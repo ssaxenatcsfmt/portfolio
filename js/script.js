@@ -1,1 +1,8 @@
-console.log('hello there');
+$(document).ready(() => {
+ 
+
+  $('img').on('click', () => {
+    $('img').toggle();
+  });
+
+});
