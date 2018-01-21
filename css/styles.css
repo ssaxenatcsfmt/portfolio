@@ -7,7 +7,7 @@
   }
 
   img {
-    width: 900px;
+    width: 700px;
   }
 
   * {
@@ -32,7 +32,7 @@
     font-size: 19px;
     color: #777;
     display: block;
-    width: 400px;
+    width: 0px;
     margin: 0 auto;
     text-align: left;
     text-decoration: none;
