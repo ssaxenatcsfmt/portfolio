@@ -32,8 +32,8 @@
     color: #777;
     display: block;
     width: 400px;
-    margin: 0 auto;
-    text-align: center;
+    margin-left: 10 auto;
+    text-align: left;
     text-decoration: none;
   }
   a {
