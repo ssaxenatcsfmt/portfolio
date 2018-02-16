@@ -2,6 +2,7 @@
     text-align: center;
     color: turquoise;
       text-decoration: underline;
+    text-decoration-color: red;
     text-decoration-style:dashed;
   }
 
@@ -46,8 +47,6 @@
     display: block;
     width: 70%px;
     margin: 400 auto;
-    text-align: center;
-    text-decoration: none;
   }
 
   .info {
