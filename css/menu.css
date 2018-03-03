@@ -49,7 +49,7 @@ body {
 }
 
 /* Add a "checked" mark when clicked on */
-.menu ul li.checked::before {
+.menu: ul li.checked::before {
   content: '';
   position: absolute;
   border-color: #fff;
