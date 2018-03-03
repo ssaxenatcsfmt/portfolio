@@ -11,13 +11,13 @@ body {
 }
 
 /* Remove margins and padding from the list */
-ul {
+.menu ul {
   margin: 0;
   padding: 0;
 }
 
 /* Style the list items */
-ul li {
+.menu ul li {
   cursor: pointer;
   position: relative;
   padding: 12px 8px 12px 40px;
@@ -32,24 +32,24 @@ ul li {
 }
 
 /* Set all odd list items to a different color (zebra-stripes) */
-ul li:nth-child(odd) {
+.menu ul li:nth-child(odd) {
   background: #f9f9f9;
 }
 
 /* Darker background-color on hover */
-ul li:hover {
+.menu ul li:hover {
   background: #3eb28d;
 }
 
 /* When clicked on, add a background color and strike out text */
-ul li.checked {
+.menu ul li.checked {
   background: #888;
   color: #fff;
   text-decoration: line-through;
 }
 
 /* Add a "checked" mark when clicked on */
-ul li.checked::before {
+.menu ul li.checked::before {
   content: '';
   position: absolute;
   border-color: #fff;
