@@ -68,6 +68,9 @@
     background-color: rgb(255, 5, 255);
   }
 
+nav {
+  background-color: pink;
+}
   nav li {
     float: left;
   }
