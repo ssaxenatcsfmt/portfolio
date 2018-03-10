@@ -1,9 +1,30 @@
 <html>
 <!DOCTYPE html>
 <head>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
 <script src="pretty.io.js"></script>
 
+  <script>
+    $('img').mouseover(function(){
+  $(this).addClass('flipped');
+}).mouseleave(function(){
+  $(this).removeClass('flipped');
+});
+
+    
+    
+    
+  </script>
+  
+  
+  <style>
+    
+    
+    .flipped {
+  transform: scale(-1, 1);
+}
+    
+  </style>
 
 
 </head>
