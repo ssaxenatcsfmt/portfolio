@@ -1,7 +1,7 @@
 $('img').mouseover(function(){
-$(this).addClass('flipped');
+  $(this).addClass('flipped');
 }).mouseleave(function(){
-$(this).removeClass('flipped');
+  $(this).removeClass('flipped');
 });
 
 
