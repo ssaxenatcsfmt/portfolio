@@ -1,4 +1,4 @@
-DOCTYPE!
+
 <html>
 <head>
 <style>
@@ -12,10 +12,28 @@ background-color: #ff00d0;
 
 </head>
 <body>
+    <h1>hi, my name is jeff, do you guys no what dis is? pls help, required</h1>
 <div id=map>p</div>
-
-
-
+ <script>
+      function initMap() {
+        var uluru = {lat: -25.363, lng: 131.044};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrUOhTZGsQ0z04WVa_JYhhhCbH99oLVNw&callback=initMap">
+    </script>
+<!--
+gmap api key
+  AIzaSyDrUOhTZGsQ0z04WVa_JYhhhCbH99oLVNw
+-->
 
 </body>
 </html>
