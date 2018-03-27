@@ -10,6 +10,20 @@
     .flipped {
   transform: scale(-1, 1);
 }
+    button {
+  width: 100px;
+    height: 100px;
+    margin-bottom: 5px;
+   background-color: #30a9c1;
+  font-size: 12px;
+  font-family: "Fontdiner Swanky";
+  font-color: yellow;
+  font-weight: 700;
+}
+    img{
+  width: 90px;
+      height: 90px;
+}
     
   </style>
 
@@ -68,11 +82,16 @@
 
 
   <script>
-    $('img').mouseover(function(){
-  $(this).addClass('flipped');
-}).mouseleave(function(){
-  $(this).removeClass('flipped');
+
+$('img').mouseenter(function(){
+$(this).attr('src', ''https://usab.simplycompete.com/uploadDownload/downloadProfilePicture?fileName=bb2cba19-0530-4917-a307-675d5ca55591.JPG);  
 });
+$('img').mouseleave(function(){
+$(this).attr('src', 'https://i.ytimg.com/vi/0c8-CC-5p6c/hqdefault.jpg');  
+});
+$( "#toggle-button" ).click( function() {
+  $( "img" ).toggle( "slow", function() {} );
+})
   </script>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/a1xeUOCKfHE?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
