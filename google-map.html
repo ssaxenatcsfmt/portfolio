@@ -6,7 +6,6 @@
 width: 700px;
 height: 600px;
 background-color: #ff00d0;
-
 }
 </style>
 
@@ -16,16 +15,22 @@ background-color: #ff00d0;
 <div id=map></div>
  <script>
       function initMap() {
+          var icream = {lat: 37.3189842, lng:-79.1898007};
         var sohum = {lat: 40.587337, lng: -75.532380};
           var coderSchool = {lat: 37.553539,lng: -121.973959};
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 20,
-          center: sohum
+          center: icream
+        });
+              var marker = new google.maps.Marker({
+          position: icream,
+          map: map
         });
         var marker1 = new google.maps.Marker({
           position: sohum,
           map: map
         });
+          
           var marker2 = new google.maps.Marker({
           position: coderSchool,
           map: map
