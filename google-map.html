@@ -17,12 +17,17 @@ background-color: #ff00d0;
  <script>
       function initMap() {
         var sohum = {lat: 40.587337, lng: -75.532380};
+          var coderSchool = {lat: 37.553539,lng: -121.973959};
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 12,
           center: sohum
         });
         var marker1 = new google.maps.Marker({
           position: sohum,
+          map: map
+        });
+          var marker2 = new google.maps.Marker({
+          position: coderSchool,
           map: map
         });
       }
