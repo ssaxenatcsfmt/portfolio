@@ -16,13 +16,13 @@ background-color: #ff00d0;
 <div id=map></div>
  <script>
       function initMap() {
-        var uluru = {lat: -25.363, lng: 131.044};
+        var sohum = {lat: 40.587337, lng: -75.532380};
         var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 4,
-          center: uluru
+          zoom: 8,
+          center: sohum
         });
-        var marker = new google.maps.Marker({
-          position: uluru,
+        var marker1 = new google.maps.Marker({
+          position: sohum,
           map: map
         });
       }
