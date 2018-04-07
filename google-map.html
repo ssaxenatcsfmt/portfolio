@@ -15,6 +15,8 @@ background-color: #ff00d0;
  <script>
       function initMap() {
           var icream = {lat: 37.3189842, lng:-79.1898007};
+          var cornell = {lat: 42.4534492, lng: -76.4756914};
+          var rohpro = {lat: 42.4593331, lng: -71.4253845};
         var sohum = {lat: 40.587337, lng: -75.532380};
           var coderSchool = {lat: 37.553539,lng: -121.973959};
         var map = new google.maps.Map(document.getElementById('map'), {
@@ -25,6 +27,14 @@ background-color: #ff00d0;
           position: icream,
           map: map, 
                   title: "I scream, you scream, we all get ice cream"
+                  var marker = new google.maps.Marker({
+          position: rohpro,
+          map: map, 
+                title: "hey cuzins"
+                  var marker = new google.maps.Marker({
+          position: cornell,
+          map: map, 
+                  title: "hey sis, hows it goin"
         });
         var marker1 = new google.maps.Marker({
           position: sohum,
