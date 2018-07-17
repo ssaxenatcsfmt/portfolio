@@ -47,7 +47,7 @@ function create() {
 
     //  Player physics properties. Give the little guy a slight bounce.
     player.body.bounce.y = 0.2;
-ddddddddddddddddddddddddddddddddddddddddswwwwwwd    player.body.collideWorldBounds = false;
+    player.body.collideWorldBounds = false;
 
 
     //  Our controls.
@@ -93,7 +93,7 @@ function update() {
         }
         player.body.velocity.x = 150;
     }
-aawwwwwwwwwwwww
+
     //  Allow the player to jump if they are touching the ground.
     if (cursors.up.isDown && player.body.blocked.down)
     {
