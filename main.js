@@ -1,11 +1,4 @@
-<!DOCTYPE html>
 
-<head>
-
-<link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
-</head>
-<body>
-  <script>  
 var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update, render: render });
 
 function preload() {
@@ -40,6 +33,10 @@ var leftKey;
 var rightKey;
 var enemyfinish;
 var playerfinish;
+var pdistance
+var edistance
+var weirdotarget
+
 function create() {
 
     //  We're going to be using physics, so enable the Arcade Physics system
@@ -63,7 +60,8 @@ function create() {
     // The player and its settings
     player = game.add.sprite(32, game.world.height - 300, 'playa');
     enemy = game.add.sprite(32, game.world.height - 320, 'playa');
-    weirdo = game.add.sprite(201, game.world.height - 280, 'weirdo');
+    weirdo = game.add.sprite(240, game.world.height - 250, 'weirdo');
+    weirdotarget = player;
     player.anchor.setTo(0.5,0.5);
     player.scale.setTo(0.5,0.5);
     game.camera.follow(player);
@@ -72,6 +70,8 @@ function create() {
     //  We need to enable physics on the player
     game.physics.arcade.enable(player);
     game.physics.arcade.enable(enemy);
+    game.physics.arcade.enable(weirdo);
+    weirdo.body.immovable = true;
     //  Player physics properties. Give the little guy a slight bounce.
     player.body.bounce.y = 0.2;
     player.body.gravity.y = 600;
@@ -108,13 +108,37 @@ function update() {
         console.log("player finished");
         playerfinish = true;
         if (playerfinish = true){
-            bmpText.inputEnabled = true;
-            bmpText = game.add.bitmapText(32, 320, 'you beat the map! congrats!!!!!',34);
+            
         };
     });
     game.physics.arcade.collide(enemy,finish, function(){
         console.log("enemy finished");
         enemyfinish = true;
+    });
+    game.physics.arcade.collide(player,weirdo, function(){
+        console.log("OUCH-p!");
+        
+        //this is where we damage the player and then decide if the healthbar is empty
+        playerHealth-=damageAmount;
+//        myname = (enteredName=="Charles")?"Charles the amazing":"Who cares!";
+        if(playerHealth<=0){
+            playerHealth = 0;
+            //player is dead
+            die();
+
+        }
+        healthBar.setPercent(playerHealth)
+    });
+    game.physics.arcade.collide(weirdo,enemy, function(){
+        enemyHealth-=damageAmount;
+        console.log("OUCH-e!");
+        if(enemyHealth<=0){
+        enemyHealth = 0;
+        //player is dead
+        diee();
+    }
+    enemyHealthBar.setPercent(enemyHealth)
+
     });
     game.physics.arcade.collide(enemy,collision);
     game.physics.arcade.collide(player,collision);
@@ -197,7 +221,54 @@ function update() {
             enemy.body.velocity.y = -350;
         }
     }
+
+    updateEnemy();
 }
+
+function updateEnemy()
+{
+    if (playerHealth == 0){
+        weirdotarget = enemy;
+    }
+    else if (enemyHealth == 0){
+        weirdotarget = player;
+    }
+    else{
+        pdistance = calcDistance(player,weirdo);
+        edistance = calcDistance(enemy,weirdo); 
+        if (pdistance >= edistance){
+            weirdotarget = enemy
+        }
+        else{
+            weirdotarget = player
+        }
+
+    }
+    
+   
+
+    if (weirdo.y > weirdotarget.y){
+       weirdo.y -= 0.4
+    }
+    else{
+        weirdo.y += 0.4
+    }
+    if (weirdo.x > weirdotarget.x){
+        weirdo.x -= 0.4
+    }
+     else{
+        weirdo.x += 0.4
+    }
+    
+    
+    //console.log('enemyDistance', calcDistance(enemy,weirdo))
+    //console.log('playerDistance', calcDistance(player,weirdo))
+
+
+function calcDistance(sprite1,sprite2)
+{
+    return Math.sqrt((sprite1.y-sprite2.y)**2 + (sprite1.x-sprite2.x)**2);
+}}
 
 function die(){
     console.log("You dead");
@@ -210,7 +281,4 @@ function diee(){
 function render(){
     game.debug.spriteInfo(player, 32, 32);
 }
-</script>
-<h1> Congradulations! you finished the game! this game was made by Sohum saxena, all credit goes to him! thanks for playing, and I hope you had a woderful time! </h1>
-</body>
-</html>
+
