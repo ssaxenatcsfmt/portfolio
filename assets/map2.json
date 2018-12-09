@@ -61,10 +61,20 @@
  "renderorder":"right-down",
  "tiledversion":"1.1.6",
  "tileheight":16,
- "tilesets":[
+  "tilesets":[
         {
+         "columns":50,
          "firstgid":1,
-         "source":"retro.tsx"
+         "image":"retro.png",
+         "imageheight":1280,
+         "imagewidth":800,
+         "margin":0,
+         "name":"retro",
+         "spacing":0,
+         "tilecount":4000,
+         "tileheight":16,
+         "tilewidth":16,
+         "transparentcolor":"#5a5268"
         }],
  "tilewidth":16,
  "type":"map",
