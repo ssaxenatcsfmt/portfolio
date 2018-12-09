@@ -4,7 +4,7 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create
 function preload() {
 
     
-    game.load.tilemap('world', 'assets/map.json', null, Phaser.Tilemap.TILED_JSON);
+    game.load.tilemap('world', 'assets/map2.json', null, Phaser.Tilemap.TILED_JSON);
     game.load.image('tiles', 'assets/retro.png');
     game.load.image('playa', 'assets/playa.png');
     game.load.image('weirdo', 'assets/New Piskel.png')
@@ -62,7 +62,7 @@ function create() {
     // The player and its settings
     player = game.add.sprite(32, game.world.height - 300, 'playa');
     enemy = game.add.sprite(32, game.world.height - 320, 'playa');
-    weirdo = game.add.sprite(240, game.world.height - 250, 'weirdo');
+    weirdo = game.add.sprite(400, game.world.height - 250, 'weirdo');
     weirdotarget = player;
     player.anchor.setTo(0.5,0.5);
     player.scale.setTo(0.5,0.5);
