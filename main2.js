@@ -59,6 +59,7 @@ function create() {
     map.setCollisionBetween(1,1000,true,collision);
     map.setCollisionBetween(1,1000,true,killlayer);
     map.setCollisionBetween(1,1000,true,finish);
+    map.setCollisionBetween(1,1000,true,trigger);
     // The player and its settings
     player = game.add.sprite(32, game.world.height - 300, 'playa');
     enemy = game.add.sprite(32, game.world.height - 320, 'playa');
@@ -205,6 +206,7 @@ function update() {
         {
             player.body.velocity.y = -350;
         }
+        
     }
 
 //ENEMY OR PLAYER 2
