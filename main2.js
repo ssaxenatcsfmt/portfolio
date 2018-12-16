@@ -206,10 +206,10 @@ function update() {
         {
             player.body.velocity.y = -350;
         }
-        game.physics.arcade.collide(enemy,trigger, function(){
+        game.physics.arcade.collide(enemy,trigger, function()){
             game.physics.arcade.enable(weirdo);
         }
-        game.physics.arcade.collide(player,trigger, function(){
+        game.physics.arcade.collide(player,trigger, function()){
             game.physics.arcade.enable(weirdo);
         }
     }
