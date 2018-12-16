@@ -73,6 +73,7 @@ function create() {
     //  We need to enable physics on the player
     game.physics.arcade.enable(player);
     game.physics.arcade.enable(enemy);
+    game.physics.arcade.enable(weirdo);
     weirdo.body.immovable = true;
     //  Player physics properties. Give the little guy a slight bounce.
     player.body.bounce.y = 0.2;
@@ -206,10 +207,34 @@ function update() {
             player.body.velocity.y = -350;
         }
         game.physics.arcade.collide(enemy,trigger, function(){
-            game.physics.arcade.enable(weirdo);
+            if (weirdo.y > weirdotarget.y){
+            weirdo.y -= 0.7
+         }
+         else{
+             weirdo.y += 0.7
+         }
+         if (weirdo.x > weirdotarget.x){
+             weirdo.x -= 0.7
+         }
+          else{
+             weirdo.x += 0.7
+         }
+
         });
         game.physics.arcade.collide(player,trigger, function(){
-            game.physics.arcade.enable(weirdo);
+            if (weirdo.y > weirdotarget.y){
+            weirdo.y -= 0.7
+         }
+         else{
+             weirdo.y += 0.7
+         }
+         if (weirdo.x > weirdotarget.x){
+             weirdo.x -= 0.7
+         }
+          else{
+             weirdo.x += 0.7
+         }
+
         });
     }
 
@@ -262,16 +287,16 @@ function updateEnemy()
     if (!(playerfinish || enemyfinish)){
 
         if (weirdo.y > weirdotarget.y){
-            weirdo.y -= 0.7
+            weirdo.y -= 0
          }
          else{
-             weirdo.y += 0.7
+             weirdo.y += 0
          }
          if (weirdo.x > weirdotarget.x){
-             weirdo.x -= 0.7
+             weirdo.x -= 0
          }
           else{
-             weirdo.x += 0.7
+             weirdo.x += 0
          }
 
     }
