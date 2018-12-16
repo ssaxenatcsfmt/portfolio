@@ -73,7 +73,7 @@ function create() {
     //  We need to enable physics on the player
     game.physics.arcade.enable(player);
     game.physics.arcade.enable(enemy);
-    game.physics.arcade.enable(weirdo);
+    game.physics.arcade.disable(weirdo);
     weirdo.body.immovable = true;
     //  Player physics properties. Give the little guy a slight bounce.
     player.body.bounce.y = 0.2;
@@ -206,7 +206,9 @@ function update() {
         {
             player.body.velocity.y = -350;
         }
-        
+        game.physics.arcade.collide(weirdo,enemy, function(){
+            game.physics.arcade.enable(weirdo);
+        }
     }
 
 //ENEMY OR PLAYER 2
