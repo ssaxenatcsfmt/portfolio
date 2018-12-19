@@ -254,16 +254,16 @@ function updateEnemy()
     if (!(playerfinish || enemyfinish)){
 
         if (weirdo.y > weirdotarget.y){
-            weirdo.y -= 0.7
+            weirdo.y -= 0.4
          }
          else{
-             weirdo.y += 0.7
+             weirdo.y += 0.4
          }
          if (weirdo.x > weirdotarget.x){
-             weirdo.x -= 0.7
+             weirdo.x -= 0.4
          }
           else{
-             weirdo.x += 0.7
+             weirdo.x += 0.4
          }
 
     }
