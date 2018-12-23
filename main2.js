@@ -192,6 +192,7 @@ function update() {
 
     });
     
+    player.body.velocity.x = 0;
     if (playerHealth>0 && !playerfinish){
 
         if (cursors.left.isDown)
@@ -208,10 +209,6 @@ function update() {
                 player.scale.x *= -1;
             }
             player.body.velocity.x = 150;
-        }
-        else
-        {
-            enemy.body.velocity.x = 0;
         }
 
         
