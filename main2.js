@@ -181,9 +181,17 @@ function update() {
         }
         healthBar.setPercent(playerHealth)
     });
+    
+    game.physics.arcade.collide(enemy,trigger, function(){
+        enemycollision = true;
 
-    //  Reset the players velocity (movement)
-    player.body.velocity.x = 0;
+    });
+
+    game.physics.arcade.collide(player,trigger, function(){
+        playercollision = true;
+
+    });
+    
     if (playerHealth>0 && !playerfinish){
 
         if (cursors.left.isDown)
@@ -201,6 +209,10 @@ function update() {
             }
             player.body.velocity.x = 150;
         }
+        else
+        {
+            enemy.body.velocity.x = 0;
+        }
 
         
         //  Allow the player to jump if they are touching the ground.
@@ -209,15 +221,6 @@ function update() {
         {
             player.body.velocity.y = -350;
         }
-        game.physics.arcade.collide(enemy,trigger, function(){
-            enemycollision = true;
-
-        });
-        
-        game.physics.arcade.collide(player,trigger, function(){
-            playercollision = true;
-
-        });
     }
 
 //ENEMY OR PLAYER 2
@@ -269,16 +272,16 @@ function updateEnemy()
     if (!(playerfinish || enemyfinish) && (enemycollision || playercollision)){
 
         if (weirdo.y > weirdotarget.y){
-            weirdo.y -= 0.7
+            weirdo.y -= 0.5
          }
          else{
-             weirdo.y += 0.7
+             weirdo.y += 0.5
          }
          if (weirdo.x > weirdotarget.x){
-             weirdo.x -= 0.7
+             weirdo.x -= 0.5
          }
           else{
-             weirdo.x += 0.7
+             weirdo.x += 0.5
          }
 
     }
