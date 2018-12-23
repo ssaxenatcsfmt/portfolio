@@ -210,36 +210,12 @@ function update() {
             player.body.velocity.y = -350;
         }
         game.physics.arcade.collide(enemy,trigger, function(){
-            enemycollision = true
-            if (weirdo.y > weirdotarget.y){
-            weirdo.y -= 0.7
-         }
-         else{
-             weirdo.y += 0.7
-         }
-         if (weirdo.x > weirdotarget.x){
-             weirdo.x -= 0.7
-         }
-          else{
-             weirdo.x += 0.7
-         }
+            enemycollision = true;
 
         });
         
         game.physics.arcade.collide(player,trigger, function(){
-            playercollision = true
-            if (weirdo.y > weirdotarget.y){
-            weirdo.y -= 0.7
-         }
-         else{
-             weirdo.y += 0.7
-         }
-         if (weirdo.x > weirdotarget.x){
-             weirdo.x -= 0.7
-         }
-          else{
-             weirdo.x += 0.7
-         }
+            playercollision = true;
 
         });
     }
@@ -293,16 +269,16 @@ function updateEnemy()
     if (!(playerfinish || enemyfinish) && (enemycollision || playercollision)){
 
         if (weirdo.y > weirdotarget.y){
-            weirdo.y -= 0
+            weirdo.y -= 0.7
          }
          else{
-             weirdo.y += 0
+             weirdo.y += 0.7
          }
          if (weirdo.x > weirdotarget.x){
-             weirdo.x -= 0
+             weirdo.x -= 0.7
          }
           else{
-             weirdo.x += 0
+             weirdo.x += 0.7
          }
 
     }
