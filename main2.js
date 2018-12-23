@@ -221,7 +221,7 @@ function update() {
          }
 
         });
-        // create a seperate functin with boolean. If moving, call collide() and then make an infinite while loop for that collide
+        
         game.physics.arcade.collide(player,trigger, function(){
             if (weirdo.y > weirdotarget.y){
             weirdo.y -= 0.7
