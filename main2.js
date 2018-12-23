@@ -37,6 +37,8 @@ var pdistance
 var edistance
 var weirdotarget
 var trigger
+var playercollision
+var enemycollision
 
 function create() {
 
@@ -85,7 +87,8 @@ function create() {
 
     playerfinish = false;
     enemyfinish = false;
-
+    playercollision = false
+    enemycollision = false
     //  Our controls.
     cursors = game.input.keyboard.createCursorKeys();
     var barConfig = {x: 130, y: 30, bg:{
@@ -207,6 +210,7 @@ function update() {
             player.body.velocity.y = -350;
         }
         game.physics.arcade.collide(enemy,trigger, function(){
+            enemycollision = true
             if (weirdo.y > weirdotarget.y){
             weirdo.y -= 0.7
          }
@@ -223,6 +227,7 @@ function update() {
         });
         
         game.physics.arcade.collide(player,trigger, function(){
+            playercollision = true
             if (weirdo.y > weirdotarget.y){
             weirdo.y -= 0.7
          }
@@ -285,7 +290,7 @@ function updateEnemy()
         }
 
     }
-    if (!(playerfinish || enemyfinish)){
+    if (!(playerfinish || enemyfinish) && (enemycollision || playercollision)){
 
         if (weirdo.y > weirdotarget.y){
             weirdo.y -= 0
