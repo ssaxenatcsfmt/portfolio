@@ -8,13 +8,14 @@ function preload() {
     game.load.image('tiles', 'assets/retro.png');
     game.load.image('playa', 'assets/playa.png');
     game.load.image('weirdo', 'assets/New Piskel.png')
-    
+    game.load.audio('dubstep', 'assets/ingamemusic.mp4')
 
 
 }
 var weirdo
 var enemy
-var player;
+var player
+var music
 var finish
 var enemyHealth = 100;
 var playerHealth = 100;
@@ -84,6 +85,9 @@ function create() {
     enemy.body.bounce.y = 0.2;
     player.body.collideWorldBounds = false;
     enemy.body.collideWorldBounds = false;
+    music = game.add.audio('dubstep');
+
+    music.play();
 
     playerfinish = false;
     enemyfinish = false;
