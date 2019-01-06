@@ -7,8 +7,8 @@ function preload() {
     game.load.tilemap('world', 'assets/map2.json', null, Phaser.Tilemap.TILED_JSON);
     game.load.image('tiles', 'assets/retro.png');
     game.load.image('playa', 'assets/playa.png');
-    game.load.image('weirdo', 'assets/New Piskel.png')
-    game.load.audio('dubstep', 'assets/ingamemusic.mp4')
+    game.load.image('weirdo', 'assets/New Piskel.png');
+    game.load.audio('dubstep', 'assets/ingamemusic.mp4');
 
 
 }
@@ -20,20 +20,20 @@ var finish
 var enemyHealth = 100;
 var playerHealth = 100;
 var damageAmount = 0.5;
-var cursors;
-var map;
-var tileset;
-var layer;
-var collision;
-var killlayer;
-var healthBar;
+var cursors
+var map
+var tileset
+var layer
+var collision
+var killlayer
+var healthBar
 var enemyHealthBar
-var upKey;
-var downKey;
-var leftKey;
-var rightKey;
-var enemyfinish;
-var playerfinish;
+var upKey
+var downKey
+var leftKey
+var rightKey
+var enemyfinish
+var playerfinish
 var pdistance
 var edistance
 var weirdotarget
@@ -88,6 +88,7 @@ function create() {
     music = game.add.audio('dubstep');
 
     music.play();
+    game.addVolume(30);
 
     playerfinish = false;
     enemyfinish = false;
