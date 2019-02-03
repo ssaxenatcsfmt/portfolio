@@ -7,83 +7,83 @@ function preload() {
     game.load.tilemap('world', 'assets/map.json', null, Phaser.Tilemap.TILED_JSON);
     game.load.image('tiles', 'assets/retro.png');
     game.load.image('playa', 'assets/playa.png');
-    game.load.image('weirdo', 'assets/New Piskel.png')
-    
+    game.load.image('weirdo', 'assets/New Piskel.png');
+    game.load.audio('dubstep', 'assets/soundloop.ogg');
 
 
 }
 var weirdo
 var enemy
-var player;
+var player
+var music
 var finish
 var enemyHealth = 100;
 var playerHealth = 100;
 var damageAmount = 0.5;
-var cursors;
-var map;
-var tileset;
-var layer;
-var collision;
-var killlayer;
-var healthBar;
+var cursors
+var map
+var tileset
+var layer
+var collision
+var killlayer
+var healthBar
 var enemyHealthBar
-var upKey;
-var downKey;
-var leftKey;
-var rightKey;
-var enemyfinish;
-var playerfinish;
+var upKey
+var downKey
+var leftKey
+var rightKey
+var enemyfinish
+var playerfinish
 var pdistance
 var edistance
 var weirdotarget
+var trigger
+var playercollision
+var enemycollision
 
 function create() {
 
-    //  We're going to be using physics, so enable the Arcade Physics system
     game.physics.startSystem(Phaser.Physics.ARCADE);
     
-    //  A simple background for our game
 
     map = game.add.tilemap('world');
-    // needs to match name in JSON file under tileset!
     map.addTilesetImage('retro','tiles');
     layer = map.createLayer('background');
     layer.resizeWorld();
     collision = map.createLayer('collision');
     killlayer = map.createLayer('killlayer');
+    trigger = map.createLayer('trigger')
     finish = map.createLayer('finish')
     collision.resizeWorld();
     collision.resizeWorld();
     map.setCollisionBetween(1,1000,true,collision);
     map.setCollisionBetween(1,1000,true,killlayer);
     map.setCollisionBetween(1,1000,true,finish);
+    map.setCollisionBetween(1,1000,true,trigger);
     // The player and its settings
     player = game.add.sprite(32, game.world.height - 300, 'playa');
     enemy = game.add.sprite(32, game.world.height - 320, 'playa');
-    weirdo = game.add.sprite(240, game.world.height - 250, 'weirdo');
+    weirdo = game.add.sprite(400, game.world.height - 250, 'weirdo');
     weirdotarget = player;
     player.anchor.setTo(0.5,0.5);
     player.scale.setTo(0.5,0.5);
     game.camera.follow(player);
     enemy.anchor.setTo(0.5,0.5);
     enemy.scale.setTo(0.5,0.5);
-    //  We need to enable physics on the player
     game.physics.arcade.enable(player);
     game.physics.arcade.enable(enemy);
     game.physics.arcade.enable(weirdo);
     weirdo.body.immovable = true;
-    //  Player physics properties. Give the little guy a slight bounce.
-    player.body.bounce.y = 0.2;
     player.body.gravity.y = 600;
     enemy.body.gravity.y = 600;
-    enemy.body.bounce.y = 0.2;
     player.body.collideWorldBounds = false;
     enemy.body.collideWorldBounds = false;
+    music = game.add.audio('dubstep');
 
     playerfinish = false;
     enemyfinish = false;
-
-    //  Our controls.
+    playercollision = false
+    enemycollision = false
     cursors = game.input.keyboard.createCursorKeys();
     var barConfig = {x: 130, y: 30, bg:{
         color:"#00000000"
@@ -96,6 +96,7 @@ function create() {
 
     leftKey = game.input.keyboard.addKey(Phaser.Keyboard.A);
     rightKey = game.input.keyboard.addKey(Phaser.Keyboard.D);
+
     var barConfig = {x: 130, y: 75, bg:{
         color:"#00000000"
     }};
@@ -125,12 +126,9 @@ function update() {
     game.physics.arcade.collide(player,weirdo, function(){
         console.log("OUCH-p!");
         
-        //this is where we damage the player and then decide if the healthbar is empty
         playerHealth-=damageAmount;
-//        myname = (enteredName=="Charles")?"Charles the amazing":"Who cares!";
         if(playerHealth<=0){
             playerHealth = 0;
-            //player is dead
             die();
 
         }
@@ -141,7 +139,6 @@ function update() {
         console.log("OUCH-e!");
         if(enemyHealth<=0){
         enemyHealth = 0;
-        //player is dead
         diee();
     }
     enemyHealthBar.setPercent(enemyHealth)
@@ -164,19 +161,30 @@ function update() {
     game.physics.arcade.collide(player,killlayer, function(){
         console.log("OUCH-p!");
         
-        //this is where we damage the player and then decide if the healthbar is empty
         playerHealth-=damageAmount;
-//        myname = (enteredName=="Charles")?"Charles the amazing":"Who cares!";
         if(playerHealth<=0){
             playerHealth = 0;
-            //player is dead
             die();
 
         }
         healthBar.setPercent(playerHealth)
     });
+    
+    game.physics.arcade.collide(enemy,trigger, function(){
+        enemycollision = true;
 
-    //  Reset the players velocity (movement)
+    });
+
+    game.physics.arcade.collide(player,trigger, function(){
+        playercollision = true;
+
+    });
+
+    if(!music.isPlaying){
+        music.loop = true;
+        music.play();
+    }
+    
     player.body.velocity.x = 0;
     if (playerHealth>0 && !playerfinish){
 
@@ -186,18 +194,17 @@ function update() {
                 player.scale.x *= -1;
             }
                 
-            player.body.velocity.x = -150;
+            player.body.velocity.x = -250;
         }
         else if (cursors.right.isDown)
         {
             if (player.scale.x < 0) {
                 player.scale.x *= -1;
             }
-            player.body.velocity.x = 150;
+            player.body.velocity.x = 250;
         }
 
         
-        //  Allow the player to jump if they are touching the ground.
         if (cursors.up.isDown && player.body.blocked.down)
 
         {
@@ -213,11 +220,11 @@ function update() {
     {    
         if (leftKey.isDown)
         {
-        enemy.body.velocity.x = -150;
+        enemy.body.velocity.x = -250;
         }
         else if (rightKey.isDown)
         {
-            enemy.body.velocity.x = +150;
+            enemy.body.velocity.x = 250;
         }
         else
         {
@@ -230,6 +237,11 @@ function update() {
     }
 
     updateEnemy();
+}
+
+function calcDistance(sprite1,sprite2)
+{
+    return Math.sqrt((sprite1.y-sprite2.y)**2 + (sprite1.x-sprite2.x)**2);
 }
 
 function updateEnemy()
@@ -251,31 +263,24 @@ function updateEnemy()
         }
 
     }
-    if (!(playerfinish || enemyfinish)){
+    if (!(playerfinish || enemyfinish) && (enemycollision || playercollision)){
 
         if (weirdo.y > weirdotarget.y){
-            weirdo.y -= 0.4
+            weirdo.y -= 0.5
          }
          else{
-             weirdo.y += 0.4
+             weirdo.y += 0.5
          }
          if (weirdo.x > weirdotarget.x){
-             weirdo.x -= 0.4
+             weirdo.x -= 0.5
          }
           else{
-             weirdo.x += 0.4
+             weirdo.x += 0.5
          }
 
     }
     
-    //console.log('enemyDistance', calcDistance(enemy,weirdo))
-    //console.log('playerDistance', calcDistance(player,weirdo))
-
-
-function calcDistance(sprite1,sprite2)
-{
-    return Math.sqrt((sprite1.y-sprite2.y)**2 + (sprite1.x-sprite2.x)**2);
-}}
+}
 
 function die(){
     console.log("You dead");
@@ -288,4 +293,3 @@ function diee(){
 function render(){
     game.debug.spriteInfo(player, 32, 32);
 }
-
