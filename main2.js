@@ -8,7 +8,7 @@ function preload() {
     game.load.image('tiles', 'assets/retro.png');
     game.load.image('playa', 'assets/playa.png');
     game.load.image('weirdo', 'assets/New Piskel.png');
-    game.load.audio('dubstep', 'assets/soundloop.ogg');
+    game.load.audio('dubstep', 'soundloop.ogg');
 
 
 }
